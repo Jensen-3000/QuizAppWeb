@@ -1,0 +1,24 @@
+[
+  {
+    "QuestionText": "What is the correct way to declare an integer variable in C#?",
+    "Options": [
+      "int x = 10;",
+      "integer x = 10;",
+      "x = 10;",
+      "var x = 10;"
+    ],
+    "CorrectAnswerIndex": 0,
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What does the following code do?",
+    "Options": [
+      "Prints 'Hello, World!' to the console.",
+      "Reads input from the user.",
+      "Performs a calculation.",
+      "Declares a variable."
+    ],
+    "CorrectAnswerIndex": 0,
+    "CodeSnippet": "Console.WriteLine(\"Hello, World!\");"
+  }
+]
