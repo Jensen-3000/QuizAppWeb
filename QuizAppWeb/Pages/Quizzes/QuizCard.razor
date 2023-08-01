@@ -1,45 +1,46 @@
-﻿@page "/quizcard"
+﻿@page "/"
+@page "/quizcard"
 @inherits QuizCardBase
 @using QuizAppWeb.Components
 @using Models
 
 <div class="container">
     <div class="quiz">
-        @if (questionIndex < Questions.Count())
+        @if (questionIndex < Questions.Count)
         {
-            <div class="app-title">
-                Quizzing!
-            </div>
+                <div class="app-title">
+                    Quizzing!
+                </div>
 
-            <div class="quiz-header">
+                <div class="quiz-header">
                 @Questions[questionIndex].QuestionText
-            </div>
+                </div>
 
             @if (Questions[questionIndex].QuestionCodeSnippet != string.Empty)
             {
-                <div class="code-container">
-                    <code>@Questions[questionIndex].QuestionCodeSnippet</code>
-                </div>
+                        <div class="code-container">
+                            <code>@Questions[questionIndex].QuestionCodeSnippet</code>
+                        </div>
             }
 
-            <div class="quiz-body">
+                <div class="quiz-body">
                 @foreach (var option in Questions[questionIndex].QuestionOptions)
                 {
-                    <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                            <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
                 }
-            </div>
+                </div>
         }
         else
         {
-            <div class="app-title">
-                @(score > (Questions.Count() / 2) ? "Congratulation" : "Better Luck Next Time")
-            </div>
-            <div class="quiz-header">
-                <b>You scored @score points!</b>
-            </div>
-            <div class="quiz-footer">
-                <button class="next-btn" @onclick="@RestartQuiz">Play Again</button>
-            </div>
+                <div class="app-title">
+                @* @(score > (Questions.Count / 2) ? "Du fik over 50% rigtige, godt gået!" : "Du skal vist øve lidt mere ;)") *@
+                </div>
+                <div class="quiz-header">
+                    <b>Du havde @score ud af @Questions.Count rigtige!</b>
+                </div>
+                <div class="quiz-footer">
+                    <button class="next-btn" @onclick="@RestartQuiz">Quiz igen</button>
+                </div>
         }
     </div>
 </div>

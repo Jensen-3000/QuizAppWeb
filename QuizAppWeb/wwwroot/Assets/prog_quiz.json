@@ -7,7 +7,7 @@
       "x = 10;",
       "var x = 10;"
     ],
-    "CorrectAnswerIndex": 0,
+    "CorrectAnswer": "int x = 10;",
     "CodeSnippet": ""
   },
   {
@@ -18,7 +18,7 @@
       "Performs a calculation.",
       "Declares a variable."
     ],
-    "CorrectAnswerIndex": 0,
+    "CorrectAnswer": "Prints 'Hello, World!' to the console.",
     "CodeSnippet": "Console.WriteLine(\"Hello, World!\");"
   }
 ]

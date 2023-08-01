@@ -8,10 +8,10 @@ namespace QuizAppWeb.Models
         public string QuestionText { get; set; } = string.Empty;
 
         [JsonPropertyName("Options")]
-        public IEnumerable<string> QuestionOptions { get; set; } = new List<string>();
+        public List<string> QuestionOptions { get; set; } = new List<string>();
 
-        [JsonPropertyName("CorrectAnswerIndex")]
-        public int QuestionCorrectAnswerIndex { get; set; }
+        [JsonPropertyName("CorrectAnswer")]
+        public string QuestionCorrectAnswer { get; set; } = string.Empty;
 
         [JsonPropertyName("CodeSnippet")]
         public string QuestionCodeSnippet { get; set; } = string.Empty;
