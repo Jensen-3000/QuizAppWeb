@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using QuizAppWeb.Models;
-using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace QuizAppWeb.Pages.Quizzes
@@ -11,16 +10,22 @@ namespace QuizAppWeb.Pages.Quizzes
 
         protected int questionIndex = 0;
         protected int score = 0;
-        const string quizFolderPath = "/Assets/prog_quiz.json";
 
         [Inject]
         protected HttpClient httpClient { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadQuestions(quizFolderPath);
+            await LoadQuestionsTest("prog_quiz");
             RandomizeOptions(Questions);
             await base.OnInitializedAsync();
+        }
+
+        private async Task LoadQuestionsTest(string quizFilename)
+        {
+            string filePath = $"/Assets/{quizFilename}.json";
+            string jsonData = await httpClient.GetStringAsync(filePath);
+            Questions = JsonSerializer.Deserialize<List<Question>>(jsonData);
         }
 
         protected void OptionSelected(string option)
@@ -37,12 +42,6 @@ namespace QuizAppWeb.Pages.Quizzes
             score = 0;
             questionIndex = 0;
             RandomizeOptions(Questions);
-        }
-
-        private async Task LoadQuestions(string filePath)
-        {
-            string jsonData = await httpClient.GetStringAsync(filePath);
-            Questions = JsonSerializer.Deserialize<List<Question>>(jsonData);
         }
 
         public void RandomizeOptions(List<Question> questions)

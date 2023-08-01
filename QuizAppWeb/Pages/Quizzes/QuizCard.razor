@@ -8,39 +8,40 @@
     <div class="quiz">
         @if (questionIndex < Questions.Count)
         {
-                <div class="app-title">
-                    Quizzing!
-                </div>
+            <div class="app-title">
+                Quizzing!
+            </div>
 
-                <div class="quiz-header">
+            <div class="quiz-header">
                 @Questions[questionIndex].QuestionText
-                </div>
+            </div>
 
             @if (Questions[questionIndex].QuestionCodeSnippet != string.Empty)
             {
-                        <div class="code-container">
-                            <code>@Questions[questionIndex].QuestionCodeSnippet</code>
-                        </div>
+                <div class="code-container">
+                    <code>@Questions[questionIndex].QuestionCodeSnippet</code>
+                </div>
             }
 
-                <div class="quiz-body">
+            <div class="quiz-body">
                 @foreach (var option in Questions[questionIndex].QuestionOptions)
                 {
-                            <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                    <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
                 }
-                </div>
+            </div>
         }
         else
         {
-                <div class="app-title">
-                @* @(score > (Questions.Count / 2) ? "Du fik over 50% rigtige, godt gået!" : "Du skal vist øve lidt mere ;)") *@
-                </div>
-                <div class="quiz-header">
-                    <b>Du havde @score ud af @Questions.Count rigtige!</b>
-                </div>
-                <div class="quiz-footer">
-                    <button class="next-btn" @onclick="@RestartQuiz">Quiz igen</button>
-                </div>
+            <div class="app-title">
+                @(score > (Questions.Count / 2) ? "Godt gået!" : "Du skal vist øve lidt mere ;)")
+            </div>
+            <div class="quiz-header">
+                <p>Du fik <b>@(Math.Round(((double)score / Questions.Count) * 100, 2))%</b> korrekt!</p>
+                <p>Du svarede <b>@score ud af @Questions.Count</b> spørgsmål korrekt.</p>
+            </div>
+            <div class="quiz-footer">
+                <button class="next-btn" @onclick="@RestartQuiz">Quiz igen</button>
+            </div>
         }
     </div>
 </div>
