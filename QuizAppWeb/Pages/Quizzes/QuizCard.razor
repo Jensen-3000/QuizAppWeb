@@ -4,7 +4,7 @@
 @using Models
 
 <h3>Select a Quiz</h3>
-<select @onchange="OnQuizSelectionChanged">
+<select value="@selectedQuiz" @onchange="OnQuizSelectionChanged">
     <option value="">Select a quiz...</option>
     @foreach (var quiz in QuizzesList)
     {

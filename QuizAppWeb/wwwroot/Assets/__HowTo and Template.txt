@@ -1,0 +1,29 @@
+﻿Template: only copy starting from line 6 or bracket "[":
+Ask AI to generate questions and provide a filename related to the questions. 
+Example: Using this template, make me 3 questions about methods in C#, with atleast 1 codesnippet and include a filename.
+Place the generated content in the Assets folder with a name.json (avoid using symbols as they might not work).
+And make sure to update _List of Quizzes.json, with the filename.
+[
+  {
+    "QuestionText": "What is the correct way to declare an integer variable in C#?",
+    "Options": [
+      "int x = 10;",
+      "integer x = 10;",
+      "x = 10;",
+      "var x = 10;"
+    ],
+    "CorrectAnswer": "int x = 10;",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What does the following code do?",
+    "Options": [
+      "Prints 'Hello, World!' to the console.",
+      "Reads input from the user.",
+      "Performs a calculation.",
+      "Declares a variable."
+    ],
+    "CorrectAnswer": "Prints 'Hello, World!' to the console.",
+    "CodeSnippet": "Console.WriteLine(\"Hello, World!\");"
+  }
+]

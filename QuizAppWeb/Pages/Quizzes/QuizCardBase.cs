@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using QuizAppWeb.Models;
 using QuizAppWeb.Services;
-using System.Text.Json;
 
 namespace QuizAppWeb.Pages.Quizzes
 {
     public class QuizCardBase : ComponentBase
     {
-        [Inject]
-        protected HttpClient HttpClient { get; set; }
-
         [Inject]
         protected QuizDataService QuizDataService { get; set; }
 
@@ -32,7 +28,9 @@ namespace QuizAppWeb.Pages.Quizzes
             if (!string.IsNullOrEmpty(selectedQuiz))
             {
                 QuestionsList = await QuizDataService.LoadQuestionsAsync(selectedQuiz);
-                QuizDataService.RandomizeOptions(QuestionsList);
+                QuestionsList = QuizDataService.RandomizeQuestionsAndOptions(QuestionsList);
+                questionIndex = 0;
+                score = 0;
                 quizStarted = true;
             }
             else
@@ -55,7 +53,7 @@ namespace QuizAppWeb.Pages.Quizzes
             score = 0;
             questionIndex = 0;
             quizStarted = false;
-            QuizDataService.RandomizeOptions(QuestionsList);
+            selectedQuiz = string.Empty;
         }
     }
 }
