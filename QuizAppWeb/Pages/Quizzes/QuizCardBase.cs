@@ -1,36 +1,49 @@
 ﻿using Microsoft.AspNetCore.Components;
 using QuizAppWeb.Models;
+using QuizAppWeb.Services;
 using System.Text.Json;
 
 namespace QuizAppWeb.Pages.Quizzes
 {
     public class QuizCardBase : ComponentBase
     {
-        public List<Question> Questions { get; set; } = new List<Question>();
+        [Inject]
+        protected HttpClient HttpClient { get; set; }
+
+        [Inject]
+        protected QuizDataService QuizDataService { get; set; }
+
+        protected List<Question> QuestionsList { get; set; } = new List<Question>();
+        protected List<string> QuizzesList { get; set; } = new List<string>();
 
         protected int questionIndex = 0;
         protected int score = 0;
-
-        [Inject]
-        protected HttpClient httpClient { get; set; }
+        protected string selectedQuiz = string.Empty;
+        protected bool quizStarted = false;
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadQuestionsTest("prog_quiz");
-            RandomizeOptions(Questions);
-            await base.OnInitializedAsync();
+            QuizzesList = await QuizDataService.LoadQuizzesAsync();
         }
 
-        private async Task LoadQuestionsTest(string quizFilename)
+        protected async Task OnQuizSelectionChanged(ChangeEventArgs e)
         {
-            string filePath = $"/Assets/{quizFilename}.json";
-            string jsonData = await httpClient.GetStringAsync(filePath);
-            Questions = JsonSerializer.Deserialize<List<Question>>(jsonData);
+            selectedQuiz = e.Value.ToString();
+            if (!string.IsNullOrEmpty(selectedQuiz))
+            {
+                QuestionsList = await QuizDataService.LoadQuestionsAsync(selectedQuiz);
+                QuizDataService.RandomizeOptions(QuestionsList);
+                quizStarted = true;
+            }
+            else
+            {
+                quizStarted = false;
+            }
         }
 
         protected void OptionSelected(string option)
         {
-            if (option == Questions[questionIndex].QuestionCorrectAnswer)
+            if (option == QuestionsList[questionIndex].QuestionCorrectAnswer)
             {
                 score++;
             }
@@ -41,16 +54,8 @@ namespace QuizAppWeb.Pages.Quizzes
         {
             score = 0;
             questionIndex = 0;
-            RandomizeOptions(Questions);
-        }
-
-        public void RandomizeOptions(List<Question> questions)
-        {
-            var random = new Random();
-            foreach (Question question in questions)
-            {
-                question.QuestionOptions = question.QuestionOptions.OrderBy(s => random.Next()).ToList();
-            }
+            quizStarted = false;
+            QuizDataService.RandomizeOptions(QuestionsList);
         }
     }
 }

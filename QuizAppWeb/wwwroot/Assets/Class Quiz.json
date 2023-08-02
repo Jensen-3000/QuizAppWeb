@@ -1,0 +1,112 @@
+[
+  {
+    "QuestionText": "What is a class in C#?",
+    "Options": [
+      "A data type that stores a single value.",
+      "A collection of methods.",
+      "A blueprint for creating objects.",
+      "An executable program."
+    ],
+    "CorrectAnswer": "A blueprint for creating objects.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "Which keyword is used to define a class in C#?",
+    "Options": [
+      "class",
+      "def",
+      "type",
+      "struct"
+    ],
+    "CorrectAnswer": "class",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What is an object in C#?",
+    "Options": [
+      "A method in a class.",
+      "An instance of a class.",
+      "A loop construct.",
+      "A type of exception."
+    ],
+    "CorrectAnswer": "An instance of a class.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "How is inheritance achieved in C#?",
+    "Options": [
+      "By using the 'extends' keyword.",
+      "By using the 'implements' keyword.",
+      "By using the 'inherits' keyword.",
+      "By using the 'inherits from' keyword."
+    ],
+    "CorrectAnswer": "By using the 'inherits' keyword.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "Which access modifier provides the widest visibility for a class member in C#?",
+    "Options": [
+      "private",
+      "protected",
+      "internal",
+      "public"
+    ],
+    "CorrectAnswer": "public",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What is encapsulation in C#?",
+    "Options": [
+      "A way to make your code shorter.",
+      "The process of hiding the internal details of an object.",
+      "A type of loop construct.",
+      "A method for converting data types."
+    ],
+    "CorrectAnswer": "The process of hiding the internal details of an object.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "Which keyword is used to create an instance of a class in C#?",
+    "Options": [
+      "new",
+      "create",
+      "instance",
+      "alloc"
+    ],
+    "CorrectAnswer": "new",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What is a constructor in C#?",
+    "Options": [
+      "A method that returns a value.",
+      "A special method used for class initialization.",
+      "A type of loop construct.",
+      "An access modifier."
+    ],
+    "CorrectAnswer": "A special method used for class initialization.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "Can a C# class inherit from multiple classes?",
+    "Options": [
+      "Yes, but only if the classes have the same name.",
+      "No, a class can only inherit from a single class.",
+      "Yes, C# doesn't have restrictions on multiple inheritance.",
+      "Yes, but only if the classes are in the same namespace."
+    ],
+    "CorrectAnswer": "No, a class can only inherit from a single class.",
+    "CodeSnippet": ""
+  },
+  {
+    "QuestionText": "What is method overloading in C#?",
+    "Options": [
+      "Using multiple methods with the same name but different parameters.",
+      "Hiding a method implementation.",
+      "Creating a new method in a derived class.",
+      "Using the 'override' keyword."
+    ],
+    "CorrectAnswer": "Using multiple methods with the same name but different parameters.",
+    "CodeSnippet": ""
+  }
+]

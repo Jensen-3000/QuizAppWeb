@@ -1,47 +1,58 @@
-﻿@page "/"
-@page "/quizcard"
+﻿@page "/Quiz"
 @inherits QuizCardBase
 @using QuizAppWeb.Components
 @using Models
 
-<div class="container">
-    <div class="quiz">
-        @if (questionIndex < Questions.Count)
-        {
-            <div class="app-title">
-                Quizzing!
-            </div>
+<h3>Select a Quiz</h3>
+<select @onchange="OnQuizSelectionChanged">
+    <option value="">Select a quiz...</option>
+    @foreach (var quiz in QuizzesList)
+    {
+        <option value="@quiz">@quiz</option>
+    }
+</select>
 
-            <div class="quiz-header">
-                @Questions[questionIndex].QuestionText
-            </div>
-
-            @if (Questions[questionIndex].QuestionCodeSnippet != string.Empty)
+@if (quizStarted)
+{
+    <div class="container">
+        <div class="quiz">
+            @if (questionIndex < QuestionsList.Count)
             {
-                <div class="code-container">
-                    <code>@Questions[questionIndex].QuestionCodeSnippet</code>
+                <div class="app-title">
+                    Quizzing!
+                </div>
+
+                <div class="quiz-header">
+                    @QuestionsList[questionIndex].QuestionText
+                </div>
+
+                @if (QuestionsList[questionIndex].QuestionCodeSnippet != string.Empty)
+                {
+                    <div class="code-container">
+                        <code>@QuestionsList[questionIndex].QuestionCodeSnippet</code>
+                    </div>
+                }
+
+                <div class="quiz-body">
+                    @foreach (var option in QuestionsList[questionIndex].QuestionOptions)
+                    {
+                        <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
+                    }
                 </div>
             }
-
-            <div class="quiz-body">
-                @foreach (var option in Questions[questionIndex].QuestionOptions)
-                {
-                    <OptionCard Option="@option" OnOptionSelected="OptionSelected"></OptionCard>
-                }
-            </div>
-        }
-        else
-        {
-            <div class="app-title">
-                @(score > (Questions.Count / 2) ? "Godt gået!" : "Du skal vist øve lidt mere ;)")
-            </div>
-            <div class="quiz-header">
-                <p>Du fik <b>@(Math.Round(((double)score / Questions.Count) * 100, 2))%</b> korrekt!</p>
-                <p>Du svarede <b>@score ud af @Questions.Count</b> spørgsmål korrekt.</p>
-            </div>
-            <div class="quiz-footer">
-                <button class="next-btn" @onclick="@RestartQuiz">Quiz igen</button>
-            </div>
-        }
+            else
+            {
+                <div class="app-title">
+                    @(score > (QuestionsList.Count / 2) ? "Godt gået!" : "Du skal vist øve lidt mere ;)")
+                </div>
+                <div class="quiz-header">
+                    <p>Du fik <b>@(Math.Round(((double)score / QuestionsList.Count) * 100, 2))%</b> korrekt!</p>
+                    <p>Du svarede <b>@score ud af @QuestionsList.Count</b> spørgsmål korrekt.</p>
+                </div>
+                <div class="quiz-footer">
+                    <button class="next-btn" @onclick="@RestartQuiz">Quiz igen</button>
+                </div>
+            }
+        </div>
     </div>
-</div>
+}

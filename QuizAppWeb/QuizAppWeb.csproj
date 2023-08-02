@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\Assets\prog_quiz.json">
+    <Content Update="wwwroot\Assets\Programming Quiz.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
